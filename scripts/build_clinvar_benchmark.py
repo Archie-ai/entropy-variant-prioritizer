@@ -3,61 +3,59 @@ import gzip
 
 vcf_file = "data/raw/clinvar_20260822.vcf.gz"
 
-# Filtering-stage counters
 total_variants = 0
 missense_variants = 0
 snv_variants = 0
-allele_valid_variants = 0
+one_base_variants = 0
+canonical_allele_variants = 0
+noncanonical_allele_variants = 0
 clinical_significance_variants = 0
 high_review_variants = 0
 
-# Class counters before the review-status filter
 pathogenic_variants = 0
 benign_variants = 0
 
-# Class counters after the 2-4-star review-status filter
-high_review_pathogenic_variants = 0
-high_review_benign_variants = 0
+strict_pathogenic_variants = 0
+strict_benign_variants = 0
 
+canonical_bases = {"A", "C", "G", "T"}
 
 pathogenic_classes = {
     "Pathogenic",
     "Likely_pathogenic",
-    "Pathogenic/Likely_pathogenic"
+    "Pathogenic/Likely_pathogenic",
 }
 
 benign_classes = {
     "Benign",
     "Likely_benign",
-    "Benign/Likely_benign"
+    "Benign/Likely_benign",
 }
 
-# ClinVar review statuses corresponding to 2, 3, or 4 stars
 accepted_review_statuses = {
     "criteria_provided,_multiple_submitters,_no_conflicts",
     "reviewed_by_expert_panel",
-    "practice_guideline"
+    "practice_guideline",
 }
 
 
 with gzip.open(vcf_file, "rt") as file:
-
     for line in file:
 
-        # Skip VCF metadata and column-header lines
+        # Skip metadata and column-header lines
         if line.startswith("#"):
             continue
 
         total_variants += 1
 
         # Split the VCF row into columns
-        fields = line.strip().split("\t")
+        fields = line.rstrip("\n").split("\t")
 
         ref = fields[3]
         alt = fields[4]
         info = fields[7]
 
-        # Parse the INFO column into a dictionary
+        # Parse the INFO field
         info_dict = {}
 
         for item in info.split(";"):
@@ -72,25 +70,36 @@ with gzip.open(vcf_file, "rt") as file:
         clinical_significance = info_dict.get("CLNSIG", "")
         review_status = info_dict.get("CLNREVSTAT", "")
 
-        # Filter 1: retain missense variants
+        # Filter 1: missense consequence
         if "missense_variant" not in molecular_consequence:
             continue
 
         missense_variants += 1
 
-        # Filter 2: retain variants annotated by ClinVar as SNVs
+        # Filter 2: ClinVar SNV annotation
         if variant_type != "single_nucleotide_variant":
             continue
 
         snv_variants += 1
 
-        # Filter 3: REF and ALT must each contain one nucleotide
+        # Filter 3: REF and ALT must each contain exactly one character
         if len(ref) != 1 or len(alt) != 1:
             continue
 
-        allele_valid_variants += 1
+        one_base_variants += 1
 
-        # Filter 4: assign accepted binary clinical labels
+        # Filter 4: REF and ALT must be canonical DNA nucleotides
+        #
+        # This removes records containing N or ".". In particular, ALT="."
+        # represents no alternate allele and cannot define a nucleotide
+        # substitution for the missense-SNV benchmark.
+        if ref not in canonical_bases or alt not in canonical_bases:
+            noncanonical_allele_variants += 1
+            continue
+
+        canonical_allele_variants += 1
+
+        # Filter 5: accepted binary clinical significance
         if clinical_significance in pathogenic_classes:
             label = 1
             pathogenic_variants += 1
@@ -104,17 +113,16 @@ with gzip.open(vcf_file, "rt") as file:
 
         clinical_significance_variants += 1
 
-        # Filter 5: retain ClinVar records with 2-4-star review status
+        # Filter 6: strict 2-4-star review status
         if review_status not in accepted_review_statuses:
             continue
 
         high_review_variants += 1
 
-        # Count pathogenic and benign classes after review filtering
         if label == 1:
-            high_review_pathogenic_variants += 1
+            strict_pathogenic_variants += 1
         else:
-            high_review_benign_variants += 1
+            strict_benign_variants += 1
 
 
 print("CLINVAR BENCHMARK FILTERING SUMMARY")
@@ -122,31 +130,26 @@ print("-----------------------------------")
 print("Total ClinVar variants:", total_variants)
 print("Missense variants:", missense_variants)
 print("Missense SNVs:", snv_variants)
-print("Valid one-base REF/ALT SNVs:", allele_valid_variants)
+print("One-character REF/ALT SNVs:", one_base_variants)
+print("Excluded noncanonical one-character alleles:", noncanonical_allele_variants)
+print("Canonical A/C/G/T missense SNVs:", canonical_allele_variants)
 print("Accepted clinical significance:", clinical_significance_variants)
-print("2-4-star variants:", high_review_variants)
+print("Strict 2-4-star variants:", high_review_variants)
 
-print()
-print("CLASS COUNTS BEFORE REVIEW-STATUS FILTER")
+print("\nCLASS COUNTS BEFORE REVIEW-STATUS FILTER")
 print("----------------------------------------")
 print("Pathogenic / likely pathogenic:", pathogenic_variants)
 print("Benign / likely benign:", benign_variants)
+print(
+    "Class-count verification:",
+    pathogenic_variants + benign_variants,
+)
 
-print()
-print("CLASS COUNTS AFTER 2-4-STAR REVIEW-STATUS FILTER")
+print("\nCLASS COUNTS AFTER 2-4-STAR REVIEW-STATUS FILTER")
 print("------------------------------------------------")
+print("Pathogenic / likely pathogenic:", strict_pathogenic_variants)
+print("Benign / likely benign:", strict_benign_variants)
 print(
-    "Pathogenic / likely pathogenic:",
-    high_review_pathogenic_variants
+    "Class-count verification:",
+    strict_pathogenic_variants + strict_benign_variants,
 )
-print(
-    "Benign / likely benign:",
-    high_review_benign_variants
-)
-
-class_count_verification = (
-    high_review_pathogenic_variants
-    + high_review_benign_variants
-)
-
-print("Class-count verification:", class_count_verification)
