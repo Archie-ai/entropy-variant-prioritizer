@@ -1,0 +1,590 @@
+{
+  "benchmark": {
+    "benign": 40318,
+    "pathogenic": 24904,
+    "records": 65222
+  },
+  "component_size_distribution": {
+    "1": {
+      "benign_count": 24537,
+      "component_count": 5578,
+      "gene_count": 5578,
+      "pathogenic_count": 12351,
+      "record_count": 36888
+    },
+    "11-50": {
+      "benign_count": 361,
+      "component_count": 1,
+      "gene_count": 20,
+      "pathogenic_count": 9,
+      "record_count": 370
+    },
+    "2": {
+      "benign_count": 10107,
+      "component_count": 1180,
+      "gene_count": 2360,
+      "pathogenic_count": 6596,
+      "record_count": 16703
+    },
+    "3-5": {
+      "benign_count": 5127,
+      "component_count": 292,
+      "gene_count": 952,
+      "pathogenic_count": 5418,
+      "record_count": 10545
+    },
+    "51+": {
+      "benign_count": 0,
+      "component_count": 0,
+      "gene_count": 0,
+      "pathogenic_count": 0,
+      "record_count": 0
+    },
+    "6-10": {
+      "benign_count": 186,
+      "component_count": 11,
+      "gene_count": 79,
+      "pathogenic_count": 530,
+      "record_count": 716
+    }
+  },
+  "connectivity": {
+    "benign_only_components": 4922,
+    "components_with_both_classes": 1888,
+    "invalid_component_mappings": 0,
+    "largest_component_gene_count": 20,
+    "largest_component_record_count": 600,
+    "multigene_components": 1484,
+    "pathogenic_only_components": 252,
+    "records_in_multigene_components": 28334,
+    "records_in_single_gene_components": 36888,
+    "single_gene_components": 5578,
+    "total_components": 7062
+  },
+  "gene_associations": {
+    "multigene_records": 6709,
+    "single_gene_records": 58513,
+    "total_gene_assignments": 72408,
+    "unique_gene_ids": 8989,
+    "unique_gene_symbol_id_pairs": 8996,
+    "unique_gene_symbols": 8996
+  },
+  "gene_name_mapping": {
+    "gene_ids_with_multiple_symbols": {
+      "100133077": [
+        "CACNA1B-AS2",
+        "LOC100133077"
+      ],
+      "101927078": [
+        "KCNN2-AS1",
+        "LOC101927078"
+      ],
+      "105371925": [
+        "LOC105371925",
+        "TEPSIN-AS1"
+      ],
+      "26146": [
+        "IFT54",
+        "TRAF3IP1"
+      ],
+      "286077": [
+        "FAM83H",
+        "SACK1H"
+      ],
+      "643677": [
+        "CCDC168",
+        "LRTM3"
+      ],
+      "84281": [
+        "AKAP19",
+        "C2orf88"
+      ]
+    },
+    "repeated_gene_id_records": 0,
+    "symbols_with_multiple_gene_ids": {}
+  },
+  "input_file": "data\\processed\\clinvar_benchmark_20260822.tsv.gz",
+  "output_files": {
+    "gene_components": "data\\processed\\clinvar_benchmark_20260822.gene_components.tsv",
+    "gene_id_symbol_audit": "data\\processed\\clinvar_benchmark_20260822.gene_id_symbol_audit.tsv",
+    "json_summary": "data\\processed\\clinvar_benchmark_20260822.gene_connectivity_audit.json"
+  },
+  "top_components_by_record_count": [
+    {
+      "benign_count": 22,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_2200",
+      "gene_count": 4,
+      "gene_ids": [
+        "2200",
+        "113939944",
+        "126862124",
+        "130057019"
+      ],
+      "gene_symbols": [
+        "FBN1",
+        "LOC113939944",
+        "LOC126862124",
+        "LOC130057019"
+      ],
+      "pathogenic_count": 578,
+      "record_count": 600
+    },
+    {
+      "benign_count": 13,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_3949",
+      "gene_count": 3,
+      "gene_ids": [
+        "3949",
+        "102465534",
+        "115271120"
+      ],
+      "gene_symbols": [
+        "LDLR",
+        "LDLR-AS1",
+        "MIR6886"
+      ],
+      "pathogenic_count": 506,
+      "record_count": 519
+    },
+    {
+      "benign_count": 2,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_429",
+      "gene_count": 3,
+      "gene_ids": [
+        "429",
+        "5053",
+        "126861615"
+      ],
+      "gene_symbols": [
+        "ASCL1",
+        "LOC126861615",
+        "PAH"
+      ],
+      "pathogenic_count": 425,
+      "record_count": 427
+    },
+    {
+      "benign_count": 361,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_7273",
+      "gene_count": 20,
+      "gene_ids": [
+        "7273",
+        "100506866",
+        "101927055",
+        "126806420",
+        "126806421",
+        "126806422",
+        "126806423",
+        "126806424",
+        "126806425",
+        "126806426",
+        "126806427",
+        "126806428",
+        "126806429",
+        "126806430",
+        "126806431",
+        "126806432",
+        "126806433",
+        "129935183",
+        "129935184",
+        "129935185"
+      ],
+      "gene_symbols": [
+        "LOC101927055",
+        "LOC126806420",
+        "LOC126806421",
+        "LOC126806422",
+        "LOC126806423",
+        "LOC126806424",
+        "LOC126806425",
+        "LOC126806426",
+        "LOC126806427",
+        "LOC126806428",
+        "LOC126806429",
+        "LOC126806430",
+        "LOC126806431",
+        "LOC126806432",
+        "LOC126806433",
+        "LOC129935183",
+        "LOC129935184",
+        "LOC129935185",
+        "TTN",
+        "TTN-AS1"
+      ],
+      "pathogenic_count": 9,
+      "record_count": 370
+    },
+    {
+      "benign_count": 202,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_672",
+      "gene_count": 2,
+      "gene_ids": [
+        "672",
+        "126862571"
+      ],
+      "gene_symbols": [
+        "BRCA1",
+        "LOC126862571"
+      ],
+      "pathogenic_count": 166,
+      "record_count": 368
+    },
+    {
+      "benign_count": 43,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_6323",
+      "gene_count": 4,
+      "gene_ids": [
+        "6323",
+        "6335",
+        "101929680",
+        "102724058"
+      ],
+      "gene_symbols": [
+        "LOC102724058",
+        "SCN1A",
+        "SCN1A-AS1",
+        "SCN9A"
+      ],
+      "pathogenic_count": 280,
+      "record_count": 323
+    },
+    {
+      "benign_count": 10,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_2645",
+      "gene_count": 1,
+      "gene_ids": [
+        "2645"
+      ],
+      "gene_symbols": [
+        "GCK"
+      ],
+      "pathogenic_count": 306,
+      "record_count": 316
+    },
+    {
+      "benign_count": 216,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_675",
+      "gene_count": 1,
+      "gene_ids": [
+        "675"
+      ],
+      "gene_symbols": [
+        "BRCA2"
+      ],
+      "pathogenic_count": 97,
+      "record_count": 313
+    },
+    {
+      "benign_count": 26,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_2123",
+      "gene_count": 7,
+      "gene_ids": [
+        "2123",
+        "2124",
+        "4763",
+        "4974",
+        "105371722",
+        "111811965",
+        "130060655"
+      ],
+      "gene_symbols": [
+        "EVI2A",
+        "EVI2B",
+        "LOC111811965",
+        "LOC130060655",
+        "MIR4733HG",
+        "NF1",
+        "OMG"
+      ],
+      "pathogenic_count": 282,
+      "record_count": 308
+    },
+    {
+      "benign_count": 193,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_5310",
+      "gene_count": 3,
+      "gene_ids": [
+        "5310",
+        "7249",
+        "105371049"
+      ],
+      "gene_symbols": [
+        "PKD1",
+        "PKD1-AS1",
+        "TSC2"
+      ],
+      "pathogenic_count": 109,
+      "record_count": 302
+    },
+    {
+      "benign_count": 13,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_24",
+      "gene_count": 3,
+      "gene_ids": [
+        "24",
+        "126805793",
+        "126805794"
+      ],
+      "gene_symbols": [
+        "ABCA4",
+        "LOC126805793",
+        "LOC126805794"
+      ],
+      "pathogenic_count": 287,
+      "record_count": 300
+    },
+    {
+      "benign_count": 79,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_7157",
+      "gene_count": 1,
+      "gene_ids": [
+        "7157"
+      ],
+      "gene_symbols": [
+        "TP53"
+      ],
+      "pathogenic_count": 209,
+      "record_count": 288
+    },
+    {
+      "benign_count": 236,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_8085",
+      "gene_count": 2,
+      "gene_ids": [
+        "8085",
+        "126861520"
+      ],
+      "gene_symbols": [
+        "KMT2D",
+        "LOC126861520"
+      ],
+      "pathogenic_count": 24,
+      "record_count": 260
+    },
+    {
+      "benign_count": 3,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_2717",
+      "gene_count": 3,
+      "gene_ids": [
+        "2717",
+        "3188",
+        "100529097"
+      ],
+      "gene_symbols": [
+        "GLA",
+        "HNRNPH2",
+        "RPL36A-HNRNPH2"
+      ],
+      "pathogenic_count": 251,
+      "record_count": 254
+    },
+    {
+      "benign_count": 40,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_1285",
+      "gene_count": 4,
+      "gene_ids": [
+        "1285",
+        "1286",
+        "654841",
+        "129935730"
+      ],
+      "gene_symbols": [
+        "COL4A3",
+        "COL4A4",
+        "LOC129935730",
+        "MFF-DT"
+      ],
+      "pathogenic_count": 213,
+      "record_count": 253
+    },
+    {
+      "benign_count": 27,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_1287",
+      "gene_count": 1,
+      "gene_ids": [
+        "1287"
+      ],
+      "gene_symbols": [
+        "COL4A5"
+      ],
+      "pathogenic_count": 215,
+      "record_count": 242
+    },
+    {
+      "benign_count": 87,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_7399",
+      "gene_count": 4,
+      "gene_ids": [
+        "7399",
+        "102723833",
+        "105372918",
+        "122152296"
+      ],
+      "gene_symbols": [
+        "LOC122152296",
+        "USH2A",
+        "USH2A-AS1",
+        "USH2A-AS2"
+      ],
+      "pathogenic_count": 149,
+      "record_count": 236
+    },
+    {
+      "benign_count": 7,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_249",
+      "gene_count": 1,
+      "gene_ids": [
+        "249"
+      ],
+      "gene_symbols": [
+        "ALPL"
+      ],
+      "pathogenic_count": 206,
+      "record_count": 213
+    },
+    {
+      "benign_count": 45,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_2548",
+      "gene_count": 2,
+      "gene_ids": [
+        "2548",
+        "55036"
+      ],
+      "gene_symbols": [
+        "CCDC40",
+        "GAA"
+      ],
+      "pathogenic_count": 165,
+      "record_count": 210
+    },
+    {
+      "benign_count": 15,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_5728",
+      "gene_count": 4,
+      "gene_ids": [
+        "5728",
+        "100144748",
+        "130004273",
+        "133834869"
+      ],
+      "gene_symbols": [
+        "KLLN",
+        "LOC130004273",
+        "MLDHR",
+        "PTEN"
+      ],
+      "pathogenic_count": 191,
+      "record_count": 206
+    },
+    {
+      "benign_count": 12,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_4625",
+      "gene_count": 4,
+      "gene_ids": [
+        "4625",
+        "104564225",
+        "126861897",
+        "126861898"
+      ],
+      "gene_symbols": [
+        "LOC126861897",
+        "LOC126861898",
+        "MHRT",
+        "MYH7"
+      ],
+      "pathogenic_count": 189,
+      "record_count": 201
+    },
+    {
+      "benign_count": 132,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_2588",
+      "gene_count": 5,
+      "gene_ids": [
+        "2588",
+        "29123",
+        "51693",
+        "126862447",
+        "130059762"
+      ],
+      "gene_symbols": [
+        "ANKRD11",
+        "GALNS",
+        "LOC126862447",
+        "LOC130059762",
+        "TRAPPC2L"
+      ],
+      "pathogenic_count": 65,
+      "record_count": 197
+    },
+    {
+      "benign_count": 123,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_4204",
+      "gene_count": 2,
+      "gene_ids": [
+        "4204",
+        "130068854"
+      ],
+      "gene_symbols": [
+        "LOC130068854",
+        "MECP2"
+      ],
+      "pathogenic_count": 73,
+      "record_count": 196
+    },
+    {
+      "benign_count": 11,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_1278",
+      "gene_count": 2,
+      "gene_ids": [
+        "1278",
+        "101927525"
+      ],
+      "gene_symbols": [
+        "COL1A2",
+        "COL1A2-AS1"
+      ],
+      "pathogenic_count": 183,
+      "record_count": 194
+    },
+    {
+      "benign_count": 68,
+      "class_profile": "both_classes",
+      "gene_component_id": "GC_6247",
+      "gene_count": 2,
+      "gene_ids": [
+        "6247",
+        "6792"
+      ],
+      "gene_symbols": [
+        "CDKL5",
+        "RS1"
+      ],
+      "pathogenic_count": 123,
+      "record_count": 191
+    }
+  ]
+}

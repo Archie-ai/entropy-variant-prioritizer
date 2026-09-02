@@ -1,0 +1,278 @@
+{
+  "audit_name": "ClinVar benchmark gene and chromosome distribution audit",
+  "input_file": "data/processed/clinvar_benchmark_20260822.tsv.gz",
+  "benchmark_sha256": "2a74db014bdf5830b1af7c4cd296c9ea1c8ea8d9e91859d1302987b265e7176f",
+  "record_count": 65222,
+  "class_counts": {
+    "pathogenic": 24904,
+    "benign": 40318
+  },
+  "gene_association_summary": {
+    "single_gene_records": 58513,
+    "multigene_records": 6709,
+    "total_gene_assignments": 72408,
+    "unique_gene_symbol_id_pairs": 8996,
+    "unique_gene_symbols": 8996,
+    "unique_nonmissing_gene_ids": 8989,
+    "records_with_missing_gene_id": 0,
+    "records_with_repeated_gene_association": 0,
+    "records_with_same_symbol_multiple_ids": 0,
+    "records_with_same_id_multiple_symbols": 0,
+    "symbols_linked_to_multiple_gene_ids": 0,
+    "gene_ids_linked_to_multiple_symbols": 7
+  },
+  "gene_class_profiles": {
+    "mixed": 2191,
+    "pathogenic_only": 500,
+    "benign_only": 6305
+  },
+  "gene_record_count_distribution": {
+    "1": 3009,
+    "2-4": 2872,
+    "5-9": 1463,
+    "10-24": 1080,
+    "25-49": 331,
+    "50-99": 162,
+    "100+": 79
+  },
+  "gene_assignment_concentration": {
+    "top_10": {
+      "gene_count_requested": 10,
+      "gene_count_available": 10,
+      "assignments": 3815,
+      "assignment_fraction": 0.052688,
+      "assignment_percentage": 5.27
+    },
+    "top_25": {
+      "gene_count_requested": 25,
+      "gene_count_available": 25,
+      "assignments": 7086,
+      "assignment_fraction": 0.097862,
+      "assignment_percentage": 9.79
+    },
+    "top_50": {
+      "gene_count_requested": 50,
+      "gene_count_available": 50,
+      "assignments": 10728,
+      "assignment_fraction": 0.14816,
+      "assignment_percentage": 14.82
+    },
+    "top_100": {
+      "gene_count_requested": 100,
+      "gene_count_available": 100,
+      "assignments": 15925,
+      "assignment_fraction": 0.219934,
+      "assignment_percentage": 21.99
+    }
+  },
+  "chromosome_count": 24,
+  "top_25_genes": [
+    {
+      "gene_symbol": "FBN1",
+      "gene_id": "2200",
+      "total_records": 600,
+      "pathogenic_records": 578,
+      "benign_records": 22
+    },
+    {
+      "gene_symbol": "LDLR",
+      "gene_id": "3949",
+      "total_records": 519,
+      "pathogenic_records": 506,
+      "benign_records": 13
+    },
+    {
+      "gene_symbol": "PAH",
+      "gene_id": "5053",
+      "total_records": 427,
+      "pathogenic_records": 425,
+      "benign_records": 2
+    },
+    {
+      "gene_symbol": "TTN",
+      "gene_id": "7273",
+      "total_records": 370,
+      "pathogenic_records": 9,
+      "benign_records": 361
+    },
+    {
+      "gene_symbol": "BRCA1",
+      "gene_id": "672",
+      "total_records": 368,
+      "pathogenic_records": 166,
+      "benign_records": 202
+    },
+    {
+      "gene_symbol": "GCK",
+      "gene_id": "2645",
+      "total_records": 316,
+      "pathogenic_records": 306,
+      "benign_records": 10
+    },
+    {
+      "gene_symbol": "BRCA2",
+      "gene_id": "675",
+      "total_records": 313,
+      "pathogenic_records": 97,
+      "benign_records": 216
+    },
+    {
+      "gene_symbol": "NF1",
+      "gene_id": "4763",
+      "total_records": 308,
+      "pathogenic_records": 282,
+      "benign_records": 26
+    },
+    {
+      "gene_symbol": "ABCA4",
+      "gene_id": "24",
+      "total_records": 300,
+      "pathogenic_records": 287,
+      "benign_records": 13
+    },
+    {
+      "gene_symbol": "SCN1A",
+      "gene_id": "6323",
+      "total_records": 294,
+      "pathogenic_records": 271,
+      "benign_records": 23
+    },
+    {
+      "gene_symbol": "TP53",
+      "gene_id": "7157",
+      "total_records": 288,
+      "pathogenic_records": 209,
+      "benign_records": 79
+    },
+    {
+      "gene_symbol": "KMT2D",
+      "gene_id": "8085",
+      "total_records": 260,
+      "pathogenic_records": 24,
+      "benign_records": 236
+    },
+    {
+      "gene_symbol": "RPL36A-HNRNPH2",
+      "gene_id": "100529097",
+      "total_records": 254,
+      "pathogenic_records": 251,
+      "benign_records": 3
+    },
+    {
+      "gene_symbol": "GLA",
+      "gene_id": "2717",
+      "total_records": 251,
+      "pathogenic_records": 248,
+      "benign_records": 3
+    },
+    {
+      "gene_symbol": "COL4A5",
+      "gene_id": "1287",
+      "total_records": 242,
+      "pathogenic_records": 215,
+      "benign_records": 27
+    },
+    {
+      "gene_symbol": "USH2A",
+      "gene_id": "7399",
+      "total_records": 236,
+      "pathogenic_records": 149,
+      "benign_records": 87
+    },
+    {
+      "gene_symbol": "ALPL",
+      "gene_id": "249",
+      "total_records": 213,
+      "pathogenic_records": 206,
+      "benign_records": 7
+    },
+    {
+      "gene_symbol": "PTEN",
+      "gene_id": "5728",
+      "total_records": 206,
+      "pathogenic_records": 191,
+      "benign_records": 15
+    },
+    {
+      "gene_symbol": "MYH7",
+      "gene_id": "4625",
+      "total_records": 201,
+      "pathogenic_records": 189,
+      "benign_records": 12
+    },
+    {
+      "gene_symbol": "MECP2",
+      "gene_id": "4204",
+      "total_records": 196,
+      "pathogenic_records": 73,
+      "benign_records": 123
+    },
+    {
+      "gene_symbol": "COL1A2",
+      "gene_id": "1278",
+      "total_records": 194,
+      "pathogenic_records": 183,
+      "benign_records": 11
+    },
+    {
+      "gene_symbol": "MSH2",
+      "gene_id": "4436",
+      "total_records": 185,
+      "pathogenic_records": 127,
+      "benign_records": 58
+    },
+    {
+      "gene_symbol": "GAA",
+      "gene_id": "2548",
+      "total_records": 182,
+      "pathogenic_records": 165,
+      "benign_records": 17
+    },
+    {
+      "gene_symbol": "TSC2",
+      "gene_id": "7249",
+      "total_records": 182,
+      "pathogenic_records": 72,
+      "benign_records": 110
+    },
+    {
+      "gene_symbol": "CFTR",
+      "gene_id": "1080",
+      "total_records": 181,
+      "pathogenic_records": 178,
+      "benign_records": 3
+    }
+  ],
+  "symbols_linked_to_multiple_gene_ids": {},
+  "gene_ids_linked_to_multiple_symbols": {
+    "84281": [
+      "AKAP19",
+      "C2orf88"
+    ],
+    "26146": [
+      "IFT54",
+      "TRAF3IP1"
+    ],
+    "101927078": [
+      "KCNN2-AS1",
+      "LOC101927078"
+    ],
+    "286077": [
+      "FAM83H",
+      "SACK1H"
+    ],
+    "100133077": [
+      "CACNA1B-AS2",
+      "LOC100133077"
+    ],
+    "643677": [
+      "CCDC168",
+      "LRTM3"
+    ],
+    "105371925": [
+      "LOC105371925",
+      "TEPSIN-AS1"
+    ]
+  },
+  "status": "PASS"
+}
