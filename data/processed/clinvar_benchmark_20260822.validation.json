@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "validated_file": "data/processed/clinvar_benchmark_20260822.tsv.gz",
+  "compressed_size_bytes": 2001001,
+  "sha256": "2a74db014bdf5830b1af7c4cd296c9ea1c8ea8d9e91859d1302987b265e7176f",
+  "record_count": 65222,
+  "unique_genomic_keys": 65222,
+  "duplicate_genomic_keys": 0,
+  "unique_clinvar_variation_ids": 65222,
+  "duplicate_clinvar_variation_ids": 0,
+  "unique_nonmissing_clinvar_allele_ids": 65222,
+  "repeated_clinvar_allele_id_excess": 0,
+  "class_counts": {
+    "pathogenic": 24904,
+    "benign": 40318
+  },
+  "review_status_counts": {
+    "2_star": {
+      "pathogenic": 21535,
+      "benign": 38813
+    },
+    "3_star": {
+      "pathogenic": 3361,
+      "benign": 1505
+    },
+    "4_star": {
+      "pathogenic": 8,
+      "benign": 0
+    }
+  },
+  "missing_optional_annotations": {
+    "clinvar_allele_id": 0,
+    "dbsnp_rs_id": 1386,
+    "gene_info": 0,
+    "clinical_hgvs": 0
+  },
+  "validation_error_count": 0,
+  "validation_error_examples": []
+}

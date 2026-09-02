@@ -294,5 +294,76 @@ Final benchmark:
 ```text
 data/raw/clinvar_20260822.vcf.gz
 
+## Deterministic ClinVar Benchmark Export and Validation
 
+The finalized ClinVar benchmark was exported from the frozen
+ClinVar GRCh38 release dated 2026-08-22.
+
+### Exported benchmark
+
+- Output file: data/processed/clinvar_benchmark_20260822.tsv.gz
+- Compressed size: 2,001,001 bytes
+- Total records: 65,222
+- Pathogenic/likely pathogenic: 24,904
+- Benign/likely benign: 40,318
+- Unique genomic keys: 65,222
+- Reference assembly: GRCh38
+
+### Dataset checksum
+
+SHA-256:
+
+2a74db014bdf5830b1af7c4cd296c9ea1c8ea8d9e91859d1302987b265e7176f
+
+The checksum uniquely identifies the exported benchmark. Any later
+modification to the compressed dataset will produce a different
+checksum and can therefore be detected.
+
+### Independent validation
+
+A separate validation script reopened the compressed TSV and
+independently verified:
+
+- the SHA-256 checksum;
+- the machine-readable schema;
+- the exact column names and column order;
+- the total record count;
+- pathogenic and benign class counts;
+- 2-star, 3-star, and 4-star review-status counts;
+- canonical A/C/G/T REF and ALT alleles;
+- agreement between CLNSIG and the binary label;
+- agreement between CLNREVSTAT and review-star level;
+- unique CHROM/POS/REF/ALT genomic keys;
+- unique ClinVar Variation IDs;
+- molecular-consequence and variant-type requirements; and
+- consistency of extracted gene symbols and NCBI Gene IDs.
+
+The independent validation passed for all 65,222 records.
+
+### Optional annotation coverage
+
+- Missing ClinVar Allele IDs: 0
+- Missing dbSNP RS IDs: 1,386
+- Missing GENEINFO annotations: 0
+- Missing clinical HGVS descriptions: 0
+
+The missing dbSNP identifiers do not require variant exclusion because
+every benchmark record retains a ClinVar Variation ID, ClinVar Allele
+ID, genomic coordinate, and clinical HGVS annotation.
+
+### Reproducibility files
+
+- scripts/export_clinvar_benchmark.py
+- scripts/validate_clinvar_benchmark_export.py
+- data/processed/clinvar_benchmark_20260822.tsv.gz
+- data/processed/clinvar_benchmark_20260822.schema.json
+- data/processed/clinvar_benchmark_20260822.sha256
+- data/processed/clinvar_benchmark_20260822.validation.json
+
+### Benchmark status
+
+The ClinVar benchmark-construction and dataset-integrity stage is
+complete. The next stage is to audit gene/transcript relationships and
+define a deterministic transcript-selection policy before protein-level
+annotation and cross-species entropy calculation.
 

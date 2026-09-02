@@ -1,0 +1,146 @@
+{
+  "dataset_name": "ClinVar strict missense SNV benchmark",
+  "description": "Canonical GRCh38 missense SNVs with pathogenic/likely pathogenic or benign/likely benign ClinVar classifications and 2-4-star review status.",
+  "source_vcf": "data/raw/clinvar_20260822.vcf.gz",
+  "source_release": "2026-08-22",
+  "assembly": "GRCh38",
+  "output_file": "clinvar_benchmark_20260822.tsv.gz",
+  "output_sha256": "2a74db014bdf5830b1af7c4cd296c9ea1c8ea8d9e91859d1302987b265e7176f",
+  "record_count": 65222,
+  "class_counts": {
+    "pathogenic": 24904,
+    "benign": 40318
+  },
+  "review_status_counts": {
+    "2_star": {
+      "pathogenic": 21535,
+      "benign": 38813
+    },
+    "3_star": {
+      "pathogenic": 3361,
+      "benign": 1505
+    },
+    "4_star": {
+      "pathogenic": 8,
+      "benign": 0
+    }
+  },
+  "missing_optional_annotations": {
+    "dbsnp_rs_id": 1386
+  },
+  "filter_definition": [
+    "INFO/MC contains missense_variant",
+    "INFO/CLNVC equals single_nucleotide_variant",
+    "REF and ALT each contain exactly one character",
+    "REF and ALT are both members of A/C/G/T",
+    "INFO/CLNSIG belongs to an accepted binary class",
+    "INFO/CLNREVSTAT represents a 2-star, 3-star, or 4-star review"
+  ],
+  "columns": [
+    {
+      "name": "assembly",
+      "type": "string",
+      "description": "Reference genome assembly."
+    },
+    {
+      "name": "clinvar_release",
+      "type": "string",
+      "description": "Frozen ClinVar release date."
+    },
+    {
+      "name": "chrom",
+      "type": "string",
+      "description": "Chromosome from the ClinVar VCF."
+    },
+    {
+      "name": "pos",
+      "type": "integer",
+      "description": "One-based genomic position."
+    },
+    {
+      "name": "ref",
+      "type": "string",
+      "description": "Canonical reference nucleotide."
+    },
+    {
+      "name": "alt",
+      "type": "string",
+      "description": "Canonical alternate nucleotide."
+    },
+    {
+      "name": "genomic_key",
+      "type": "string",
+      "description": "Unique CHROM:POS:REF:ALT identifier."
+    },
+    {
+      "name": "clinvar_variation_id",
+      "type": "string",
+      "description": "ClinVar Variation ID from VCF column 3."
+    },
+    {
+      "name": "clinvar_allele_id",
+      "type": "string",
+      "description": "ClinVar Allele ID from INFO/ALLELEID."
+    },
+    {
+      "name": "dbsnp_rs_id",
+      "type": "string",
+      "description": "Raw dbSNP identifier value from INFO/RS; blank if absent."
+    },
+    {
+      "name": "gene_info",
+      "type": "string",
+      "description": "Unmodified INFO/GENEINFO value."
+    },
+    {
+      "name": "gene_symbols",
+      "type": "string",
+      "description": "Pipe-separated gene symbols extracted from GENEINFO."
+    },
+    {
+      "name": "gene_ids",
+      "type": "string",
+      "description": "Pipe-separated NCBI Gene IDs extracted from GENEINFO."
+    },
+    {
+      "name": "molecular_consequence",
+      "type": "string",
+      "description": "Unmodified INFO/MC molecular consequence annotation."
+    },
+    {
+      "name": "clinical_hgvs",
+      "type": "string",
+      "description": "Unmodified INFO/CLNHGVS value."
+    },
+    {
+      "name": "clinical_significance",
+      "type": "string",
+      "description": "Original accepted INFO/CLNSIG value."
+    },
+    {
+      "name": "label",
+      "type": "integer",
+      "description": "Binary classification label: 1 pathogenic, 0 benign."
+    },
+    {
+      "name": "label_name",
+      "type": "string",
+      "description": "Human-readable binary class name."
+    },
+    {
+      "name": "review_status",
+      "type": "string",
+      "description": "Unmodified INFO/CLNREVSTAT value."
+    },
+    {
+      "name": "review_stars",
+      "type": "integer",
+      "description": "ClinVar review confidence level: 2, 3, or 4 stars."
+    },
+    {
+      "name": "variant_type",
+      "type": "string",
+      "description": "ClinVar variant type from INFO/CLNVC."
+    }
+  ]
+}
