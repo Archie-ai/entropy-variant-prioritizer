@@ -275,7 +275,24 @@ After each completed milestone:
 7. Push the verified checkpoint.
 8. Record the commit hash and next action here.
 
-## 14. Current restart point
+## Benchmark 1A: ClinVar High-Confidence Missense SNVs
 
-Resume from the **Benchmark 1A integrity audit**, beginning with unique `(CHROM, POS, REF, ALT)` counts, duplicate detection, conflicting labels for identical variants, and review-status-specific class counts.
+### Status
+
+Benchmark construction and record-level dataset-integrity auditing are complete.
+
+Final benchmark:
+
+- 65,222 unique canonical missense SNVs
+- 24,904 pathogenic/likely pathogenic variants
+- 40,318 benign/likely benign variants
+- Reference assembly: GRCh38
+- ClinVar input release: 2026-08-22
+
+### Frozen Input
+
+```text
+data/raw/clinvar_20260822.vcf.gz
+
+
 
