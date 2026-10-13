@@ -1,0 +1,158 @@
+name: VEP 116.2 validation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  annotate:
+    name: Annotate 40 validation variants
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+
+    env:
+      VEP_IMAGE: ensemblorg/ensembl-vep@sha256:5c57abdc40b637cac198370b4c114777fa24de3336141fdf09d2b0c43cd4b8da
+      INPUT_DIR: data/interim/vep_validation
+      OUTPUT_DIR: vep_validation_artifact
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify frozen inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          printf '%s  %s\n' \
+            '08b0515457758fae40e500260ddda5dbf4ea2389857bfd4d503f36ed5d6a78ba' \
+            "$INPUT_DIR/clinvar_vep_validation_40.vcf" \
+            | sha256sum --check -
+
+          printf '%s  %s\n' \
+            '26c4b80e1f48b7ad247d75be049ae1d50cf1d3ccf5f5c3e659323079f3063182' \
+            "$INPUT_DIR/clinvar_vep_validation_40_manifest.tsv" \
+            | sha256sum --check -
+
+          input_records=$(awk '!/^#/ {count++} END {print count + 0}' \
+            "$INPUT_DIR/clinvar_vep_validation_40.vcf")
+
+          test "$input_records" -eq 40
+
+      - name: Pull pinned VEP image
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker pull "$VEP_IMAGE"
+          docker image inspect "$VEP_IMAGE" \
+            --format 'image_id={{.Id}} repo_digests={{json .RepoDigests}}'
+
+      - name: Run VEP
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p "$OUTPUT_DIR"
+
+          printf '%s\n' "$VEP_IMAGE" \
+            > "$OUTPUT_DIR/vep_image.txt"
+
+          set +e
+          docker run --rm \
+            --mount type=bind,source="$GITHUB_WORKSPACE/$INPUT_DIR",target=/input,readonly \
+            "$VEP_IMAGE" \
+            vep \
+            --input_file /input/clinvar_vep_validation_40.vcf \
+            --output_file STDOUT \
+            --format vcf \
+            --tab \
+            --species homo_sapiens \
+            --assembly GRCh38 \
+            --database \
+            --host useastdb.ensembl.org \
+            --port 5306 \
+            --symbol \
+            --numbers \
+            --canonical \
+            --mane \
+            --biotype \
+            --transcript_version \
+            --protein \
+            --sift b \
+            --polyphen b \
+            --hgvs \
+            --variant_class \
+            --no_stats \
+            --fork 4 \
+            --force_overwrite \
+            > "$OUTPUT_DIR/clinvar_vep_validation_40.vep.tsv" \
+            2> "$OUTPUT_DIR/clinvar_vep_validation_40.vep.stderr.log"
+
+          vep_exit_code=$?
+          set -e
+
+          printf '%s\n' "$vep_exit_code" \
+            > "$OUTPUT_DIR/vep_exit_code.txt"
+
+          exit "$vep_exit_code"
+
+      - name: Audit completed VEP output
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          input="$INPUT_DIR/clinvar_vep_validation_40.vcf"
+          output="$OUTPUT_DIR/clinvar_vep_validation_40.vep.tsv"
+          difference="$OUTPUT_DIR/id_difference.txt"
+
+          test -s "$output"
+
+          header_count=$(grep -c '^#Uploaded_variation' "$output" || true)
+          test "$header_count" -eq 1
+
+          annotation_rows=$(awk -F '\t' \
+            '!/^#/ && NF {count++} END {print count + 0}' "$output")
+
+          unique_ids=$(awk -F '\t' \
+            '!/^#/ && NF {
+              seen[$1] = 1
+            }
+            END {
+              for (id in seen) {
+                count++
+              }
+              print count + 0
+            }' "$output")
+
+          test "$unique_ids" -eq 40
+
+          comm -3 \
+            <(awk '!/^#/ {print $3}' "$input" | sort -u) \
+            <(awk -F '\t' '!/^#/ && NF {print $1}' "$output" | sort -u) \
+            > "$difference"
+
+          test ! -s "$difference"
+
+          final_byte=$(tail -c 1 "$output" | od -An -t x1 | tr -d '[:space:]')
+          test "$final_byte" = "0a"
+
+          sha256sum "$output" \
+            > "$OUTPUT_DIR/sha256sums.txt"
+
+          {
+            printf 'annotation_rows\t%s\n' "$annotation_rows"
+            printf 'unique_input_ids\t%s\n' "$unique_ids"
+            printf 'header_count\t%s\n' "$header_count"
+   printf 'identity_difference_lines\t0\n'
+            printf 'final_newline\tPASS\n'
+          } > "$OUTPUT_DIR/audit_summary.tsv"
+
+      - name: Upload result and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vep-validation-40-ensembl-116
+          path: vep_validation_artifact/
+          if-no-files-found: warn
+          retention-days: 30
