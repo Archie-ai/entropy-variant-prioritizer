@@ -1,7 +1,7 @@
 name: VEP 116.2 validation
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 permissions:
   contents: read
